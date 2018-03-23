@@ -1,0 +1,7 @@
+- name: Lookahead Search
+  url: https://www.lookahead.com.au/
+  image: sponsors/lookahead.png
+
+- name: JetBrains
+  url: https://www.jetbrains.com/
+  image: sponsors/jetbrains.png

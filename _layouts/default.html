@@ -1,7 +1,17 @@
----
-layout: base
----
+<!DOCTYPE html>
+<html>
+<head>
+{% include head.html %}
+</head>
+<body>
+    
+{% include header.html %}
 
-<article role="main" class="page-content">
-    {{ content }}
-</article>
+<div id="content" class="fixed-width">
+{{ content }}
+</div>
+
+{% include footer.html %}
+
+</body>
+</html>

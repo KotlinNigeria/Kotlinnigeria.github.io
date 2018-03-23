@@ -1,16 +1,121 @@
 ---
-layout: index
+layout: default
+id: home
+title: Home
+description: "Welcome, Kotliners! This is a group for anyone interested in Kotlin and located in Sydney, Australia. All developers welcome, regardless of their occupation: Android, backend, frontend or anything else. Meet new people, listen to interesting talks and expand your knowledge of this great language."
 ---
 
+<div class="section clear">
+    <div class="section-content right">
+        <h1>Welcome, Kotliners!</h1>
+        <p>This is a group for anyone interested in <a href="https://kotlinlang.org/">Kotlin</a> and located in Sydney, Australia. All developers welcome, regardless of their occupation: Android, backend, frontend or anything else. Meet new people, listen to interesting talks and expand your knowledge of this great language.</p>
+    </div>
+</div>
 
-{% include pages/index/features.html %}
+<div class="section clear">
+    
+    <fieldset class="sponsors-content">
+        <legend class="title flag-text">Sponsors</legend>
+        {% for sponsor in site.data.sponsors %}
+        <a href="{{ sponsor.url }}" title="{{ sponsor.name }}" target="_blank" class="item sponsor-item">
+            <img src="{{ site.baseurl }}/assets/{{ sponsor.image }}"/>
+        </a>
+        {% endfor %}
+    </fieldset>
 
-{% include pages/index/code-examples.html %}
+    {% for event in site.data.events reversed %}
+    {% if event.announcement %}
 
-{% include pages/index/video.html %}
+    <div class="event-announcement">{{ event.announcement }}</div>
 
-{% include pages/index/get-kotlin.html %}
+    {% else %}
+    
+    <a name="{{ event.anchor }}" style="display:block; padding-top:5px"></a>
+    
+    <div class="event-content">
+        <h2><a href="{{ event.url }}" target="_blank">{{ event.title }}</a> <a href="#{{ event.anchor }}" class="section-anchor">#</a></h2>
+        <div class="sidebar-container">
+            <div class="left">
+                <p>
+                    <b>{{ event.date | date: "%A, %d %B %Y" }}</b>
+                    <br/>
+                    <small>{{ event.date | date: "%I:%M %p" }}</small>
+                    <span class="upcoming-flag flag-text" date="{{ event.date | date: "%s" }}" style="display:none;">Upcoming</span>
+                </p>
+                <p>
+                    {% if event.location.url %}<a href="{{ event.location.url }}" title="Google Maps">{% endif %}<b>{{ event.location.name }}</b>{% if event.location.url %}</a>{% endif %}
+                    <br/>
+                    <small>{{ event.location.address }}</small> 
+                </p>
+                
+                {% if event.sponsor %}
+                <p>
+                    <a href="{{ event.sponsor.url }}" title="{{ event.sponsor.name }}" target="_blank" class="sponsor-item"><img src="{{ site.baseurl }}/assets/{{ event.sponsor.image }}"/></a>
+                </p>
+                {% endif %}
+                
+            </div><div class="right event-description">
+                <p>{{ event.description }}</p>
+                <ul class="links">
+                    <li class="register-flag" date="{{ event.date | date: "%s" }}" style="display:none;">
+                        <a href="{{ event.url }}" target="_blank" class="flag-text" ">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% for talk in event.talks %}
+        <hr/>
+        <div class="sidebar-container" style="margin-bottom:10px;">
+            <div class="left">
+                {% if talk.speaker.url %}<a href="{{ talk.speaker.url }}">{% endif %}
+                <h3 class="speaker-name">{{ talk.speaker.name }}</h3>
+                {% if talk.speaker.url %}</a>{% endif %}
+                <div class="speaker-title flag-text">{{ talk.speaker.title }}</div>
+                {% if talk.speaker.image %}
+                <div class="speaker-image">
+                    <img src="{{ site.baseurl }}/assets/{{ talk.speaker.image }}" title="{{ talk.speaker.name }}" />
+                </div>
+                {% endif %}
+            </div><div class="right">
+                {% if talk.title %}
+                <h3>{{ talk.title }}</h3>
+                {% else %}
+                <p>To be announced</p>
+                {% endif %}
+                {% if talk.description %}
+                <p>{{ talk.description }}</p>
+                {% endif %}
+                {% if talk.links %}
+                <ul class="links">
+                    {% for link in talk.links %}
+                    <li><a href="{{ link.url }}" target="_blank" class="flag-text">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+</div>
 
-{% include pages/index/testimonials.html %}
+<script>
 
-{% include pages/index/community.html %}
+$(document).ready(function() {
+    $(".upcoming-flag").each(function(index, elem) { toggleDatedElem(elem); });
+
+    $(".register-flag").each(function(index, elem) { toggleDatedElem(elem); });
+
+    function toggleDatedElem(elem) {
+        var rawDate = parseInt($(elem).attr('date'))
+        if (!isNaN(rawDate)) {
+            var date = new Date(0);
+            date.setSeconds(rawDate);
+            $(elem).toggle(date > new Date());
+        }
+    }
+})
+
+</script>

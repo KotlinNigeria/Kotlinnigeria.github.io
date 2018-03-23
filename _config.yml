@@ -1,48 +1,27 @@
-# Jekyll Settings
-name: Kotlin
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+# Build settings
+timezone: Africa/Lagos
 markdown: kramdown
-markdown_ext: foo
-kramdown:
-  input: GFM
-  hard_wrap: false
-highlighter: pygments
-exclude:
-  - '*.scss'
-  - vendor
-  - bin
-  - Rakefile
-  - Gemfile
-  - Gemfile.lock
-  - rake
-  - INSTALL.sh
-  - README.md
-  - notes.txt
-  - LICENSE
-  - node_modules
+baseurl: ""
 
-include:
-  - js
+# Content
+title: "Lagos Kotlin"
+subtitle: "User Group"
 
-# Site Settings
-baseurl:
-code_baseurl: https://github.com/JetBrains/kotlin-web-site/tree/master/code
-
-# Custom Settings
-github_url: https://github.com/JetBrains/kotlin
-twitter_url: https://twitter.com/kotlin
-forum_url: http://devnet.jetbrains.com/community/kotlin
-site_github_url: http://github.com/JetBrains/kotlin-web-site
-edit_on_github_url: https://github.com/JetBrains/kotlin-web-site/edit/master/%path%
-pdf_url: /docs/kotlin-docs.pdf
-img_tutorial_root: assets/images/tutorials
-grammar_file_path: grammar.xml
-
-# Analytics and webmaster tools stuff goes here
-google_analytics: UA-940435-32
-google_verify:
-
-
-# Text snippets used over and over again
-text_using_gradle: In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see [Using Gradle](/docs/reference/using-gradle.html).
-
-# Info
+# Social
+social_meetup: "https://www.meetup.com/Kotlin-Nigeria-User-Group/"
